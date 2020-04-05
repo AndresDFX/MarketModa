@@ -1,6 +1,7 @@
 <?php
 
 use App\Product;
+use App\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,7 @@ use App\Product;
 Route::get('/', function () {
 
 
-    /**Creando un dato de prueba en la route principal 
+    /**Creando un dato de prueba en la route principal
     $prod = new Product();
     $prod->nombre = 'Producto 1';
     $prod->slug = 'Producto 1';
@@ -29,14 +30,20 @@ Route::get('/', function () {
     $prod->activo= 'Si';
     $prod->sliderprincipal= 'No';
     $prod->save();
-    
+
     return $prod;
     */
 
-    //Buscar un producto con su foreign key 
+    //Retornar la caegoria de un producto
     //$prod = Product::find(1)->first();
     //return $prod;
-    return view('welcome');
+
+    //Retornar todos los productos de una categoria
+    //$cat = Category::find(1)->products;
+    //return $cat;
+
+    //return view('welcome');
+    return view ('tienda.index');
 });
 
 Auth::routes();
