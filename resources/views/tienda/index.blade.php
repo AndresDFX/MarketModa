@@ -3,6 +3,15 @@
 
 @section('titulo','MarketModa')
 
+
+@section('estilos')
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('asset/plugins/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('asset/styles/main_styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('asset/styles/responsive.css') }}">
+
+@endsection
+
 @section('contenido')
 	<div class="super_container_inner">
 		<div class="super_overlay"></div>
