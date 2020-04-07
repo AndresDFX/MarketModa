@@ -15,20 +15,20 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nombre');
-            $table->string('slug');
+            $table->string('nombre')->unique();
+            $table->string('slug')->unique();
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('cantidad')->default(0);
             $table->decimal('precio_actual',12,2)->default(0);
             $table->decimal('precio_anterior',12,2)->default(0);
             $table->integer('porcentaje_descuento')->unsigned()->default(0);
-            $table->text('descripcion_corta');
-            $table->text('descripcion_larga');
-            $table->text('especificaciones');
-            $table->text('datos_de_interes');
-            $table->unsignedBigInteger('visitas')->default(0);   
-            $table->unsignedBigInteger('ventas')->default(0);  
-            $table->string('estado'); 
+            $table->text('descripcion_corta')->nullable();
+            $table->text('descripcion_larga')->nullable();
+            $table->text('especificaciones')->nullable();
+            $table->text('datos_de_interes')->nullable();
+            $table->unsignedBigInteger('visitas')->default(0);
+            $table->unsignedBigInteger('ventas')->default(0);
+            $table->string('estado');
             $table->char('activo',2);
             $table->char('sliderprincipal',2);
             $table->timestamps();
@@ -36,7 +36,7 @@ class CreateProductsTable extends Migration
             //Creacion de la llave foranea con categories
             $table->foreign('category_id')
                    ->references('id')
-                   ->on('categories');       
+                   ->on('categories');
         });
     }
 
