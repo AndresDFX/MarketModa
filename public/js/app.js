@@ -49570,7 +49570,7 @@ var apicategory = new Vue({
     }
   },
   mounted: function mounted() {
-    if (document.getElementById('editar').innerHTML) {
+    if (document.getElementById('editar')) {
       this.nombre = document.getElementById('nombretemp').innerHTML;
       this.deshabilitar_boton = 0;
     }
@@ -49610,12 +49610,21 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+//Administracion de las APIs de Vue deacuerdo al id
 
-var app = new Vue({
-  el: '#app'
-}); //Agregamos la APIs de Vue
+if (document.getElementById('app')) {
+  var app = new Vue({
+    el: '#app'
+  });
+}
 
-__webpack_require__(/*! ./apicategory */ "./resources/js/apicategory.js");
+if (document.getElementById('apicategory')) {
+  __webpack_require__(/*! ./apicategory */ "./resources/js/apicategory.js");
+}
+
+if (document.getElementById('confirmar_eliminar')) {
+  __webpack_require__(/*! ./confirmar_eliminar */ "./resources/js/confirmar_eliminar.js");
+}
 
 /***/ }),
 
@@ -49742,6 +49751,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/confirmar_eliminar.js":
+/*!********************************************!*\
+  !*** ./resources/js/confirmar_eliminar.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var confirmar_eliminar = new Vue({
+  el: '#confirmar_eliminar',
+  data: {
+    URL_delete: ''
+  },
+  methods: {
+    deseas_eliminar: function deseas_eliminar(id) {
+      this.URL_delete = document.getElementById('url_base').innerHTML + '/' + id; //Llamamos el id del componente modal_eliminar.blade y lo mostramos
+
+      $('#modalEliminar').modal('show');
+    }
+  }
+});
 
 /***/ }),
 

@@ -1,6 +1,6 @@
 @extends('template.admin')
 
-@section('titulo','Editar categoria')
+@section('titulo','Ver categoria')
 
 @section('contenido')
     <div id="apicategory">

@@ -3,7 +3,13 @@
 @section('titulo','Administracion de Categorias')
 
 @section('contenido')
-        <div class="row">
+
+
+        <div class="row" id="confirmar_eliminar">
+
+        <span id="url_base" style="display:none;">{{route('admin.category.index')}}</span>
+        @include('custom.modal_eliminar')
+
           <div class="col-12">
             <div class="card">
               <div class="card-header">
@@ -49,9 +55,8 @@
 
                         <td><a class="btn btn-success" href="{{route('admin.category.show', $categoria->slug)}}"><i class="far fa-eye"></i></a></td>
                         <td><a class="btn btn-info" href="{{route('admin.category.edit', $categoria->slug)}}"><i class="far fa-edit"></i></a></td>
-                        <td><a class="btn btn-danger" href="{{route('admin.category.index', $categoria->slug)}}"><i class="far fa-trash-alt"></a></td>
-
-
+                        <td><a class="btn btn-danger" href="{{route('admin.category.index')}}"
+                                v-on:click.prevent="deseas_eliminar({{$categoria->id}})"><i class="far fa-trash-alt"></a></td>
                         </tr>
                     @endforeach
 
@@ -63,7 +68,7 @@
 
               <!-- /.card-body -->
             </div>
-              <a class="m-2 float-left btn btn-primary" href="{{route('admin.category.create')}}">Crear</a>
+              <a class="m-2 float-left btn btn-primary" href="{{route('admin.category.create')}}" >Crear</a>
             <!-- /.card -->
           </div>
 

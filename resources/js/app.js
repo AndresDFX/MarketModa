@@ -27,9 +27,24 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app',
-});
 
-//Agregamos la APIs de Vue
-require('./apicategory');
+
+
+//Administracion de las APIs de Vue deacuerdo al id
+
+if (document.getElementById('app')) {
+    const app = new Vue({
+        el: '#app',
+    });
+}
+
+if (document.getElementById('apicategory')) {
+    require('./apicategory');
+}
+
+if (document.getElementById('confirmar_eliminar')) {
+    require('./confirmar_eliminar');
+}
+
+
+
