@@ -53,9 +53,12 @@ class AdminCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        //Hacemos un where dentro de la BD, si existe retornamos la variable en el ambito de la vista y switch de Si
+        $cat = Category::where('slug', $slug)->firstOrFail();
+        $editar = 'Si';
+        return view('admin.category.show', compact('cat', 'editar'));
     }
 
     /**
