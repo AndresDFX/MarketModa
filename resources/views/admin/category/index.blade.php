@@ -2,8 +2,11 @@
 
 @section('titulo','Administracion de Categorias')
 
-@section('contenido')
+@section('breadcrumb')
+    <li class="breadcrumb-item active">@yield('titulo')</li>
+@endsection
 
+@section('contenido')
 
         <div class="row" id="confirmar_eliminar">
 
@@ -16,13 +19,18 @@
                 <h3 class="card-title">Seccion de categorias</h3>
 
                 <div class="card-tools">
-                  <div class="input-group input-group-sm" style="width: 150px;">
-                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                    <form>
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input type="text" name="nombre" class="form-control float-right" placeholder="Buscar"
+                            value="{{request()->get('nombre')}}"
 
-                    <div class="input-group-append">
-                      <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
-                    </div>
-                  </div>
+                            >
+
+                            <div class="input-group-append">
+                            <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                  </form>
                 </div>
               </div>
               <!-- /.card-header -->
@@ -63,7 +71,7 @@
 
                   </tbody>
                 </table>
-                {{ $categorias->links()}}
+                {{ $categorias->appends($_GET)->links()}}
               </div>
 
               <!-- /.card-body -->

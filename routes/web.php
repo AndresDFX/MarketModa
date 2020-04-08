@@ -53,7 +53,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin', function () {
     return view('template.admin');
-});
+})->name('admin');
 
 //Ruta que enlaza el controlador con los una url
 Route::resource('admin/category', 'Admin\AdminCategoryController')->names('admin.category');
