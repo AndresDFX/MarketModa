@@ -38,6 +38,13 @@ class AdminCategoryController extends Controller
      */
     public function store(Request $request)
     {
+        //Validacion deacuerdo al migracion de la peticion
+        $request->validate([
+            'nombre'=>'required|max:50|unique:categories,nombre',
+            'slug' => 'required|max:50|unique:categories,slug',
+
+        ]);
+
         //Crear una nueva categoria y guardarla en la BD
         $cat = new Category();
         $cat->nombre            = $request->nombre;
@@ -87,6 +94,15 @@ class AdminCategoryController extends Controller
     {
         //Buscar en la BD por el id
         $cat = Category::findOrFail($id);
+
+        //Validacion deacuerdo al migracion de la peticion
+        $request->validate([
+            'nombre' => 'required|max:50|unique:categories,nombre'. $cat->id,
+            'slug' => 'required|max:50|unique:categories,slug' . $cat->id,
+
+        ]);
+
+
         $cat->nombre            = $request->nombre;
         $cat->slug              = $request->slug;
         $cat->descripcion       = $request->descripcion;

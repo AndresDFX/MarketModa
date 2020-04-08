@@ -769,7 +769,7 @@
         @endif
 
 
-         <!-- Sesion de una accion cancelada -->
+        <!-- Sesion de una accion cancelada -->
         @if(session('cancelar'))
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
 
@@ -778,6 +778,21 @@
                 <span aria-hidden="true">&times;</span>
 
             </button>
+
+        </div>
+        @endif
+
+        <!-- Manejo de seguridad de errores -->
+        @if($errors->any())
+        <div class="alert alert-danger">
+
+            <ul>
+                @foreach($errors->all() as $error)
+                <li>
+                    {{$error}}
+                </li>
+                @endforeach
+            </ul>
 
         </div>
         @endif
