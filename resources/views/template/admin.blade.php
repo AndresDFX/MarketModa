@@ -798,11 +798,7 @@
         @endif
 
 
-
-
-
         @yield('contenido')
-
 
 
     </section>
