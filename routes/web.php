@@ -58,3 +58,9 @@ Route::get('/admin', function () {
 
 //Ruta que enlaza el controlador con los una url
 Route::resource('admin/category', 'Admin\AdminCategoryController')->names('admin.category');
+
+
+//Button cancelar en edit y create category
+Route::get('cancelar/{ruta}',function($ruta){
+    return redirect()->route('admin.category.index')->with('cancelar', 'Accion cancelada');
+})->name('cancelar');

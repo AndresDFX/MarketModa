@@ -57,8 +57,10 @@
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
-        <button  :disabled="deshabilitar_boton==1"
-            type="submit" class="btn btn-primary float-right">Guardar</button>
+
+            <a class="btn btn-danger" href="{{route('cancelar', 'admin.category.index')}}">Cancelar</a>
+            <button  :disabled="deshabilitar_boton==1"
+                type="submit" class="btn btn-primary float-right">Guardar</button>
 
         </div>
         <!-- /.card-footer-->

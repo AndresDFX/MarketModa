@@ -15,7 +15,7 @@ class AdminCategoryController extends Controller
      */
     public function index()
     {
-        $categorias = Category::orderBy('nombre')->paginate(2);
+        $categorias = Category::orderBy('nombre')->paginate(2   );
         return view ('admin.category.index', compact('categorias'));
     }
 
@@ -44,7 +44,7 @@ class AdminCategoryController extends Controller
         $cat->descripcion       = $request->descripcion;
         $cat->save();
 
-        return $cat;
+        return redirect()->route('admin.category.index')->with('datos', 'Registro creado correctamente');
     }
 
     /**
@@ -88,7 +88,7 @@ class AdminCategoryController extends Controller
         $cat->descripcion       = $request->descripcion;
         $cat->save();
 
-        return $cat;
+        return redirect()->route('admin.category.index')->with('datos', 'Registro actualizado correctamente');
     }
 
     /**
