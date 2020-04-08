@@ -38,7 +38,8 @@ mix.scripts([
     'public/asset/js/custom.js'
 ], 'public/js/all.js');
 
-
+//Compilar archivo para template de adminLTE
+mix.js('resources/js/app_admin.js', 'public/js')
 
 
 
