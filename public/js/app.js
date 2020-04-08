@@ -49491,6 +49491,88 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/js/apicategory.js":
+/*!*************************************!*\
+  !*** ./resources/js/apicategory.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var apicategory = new Vue({
+  el: '#apicategory',
+  data: {
+    nombre: '',
+    slug: '',
+    div_mensajeslug: 'Slug no disponible',
+    div_clase_slug: 'badge badge-danger',
+    div_aparecer: false,
+    deshabilitar_boton: 0
+  },
+  computed: {
+    generarSlug: function generarSlug() {
+      //Limpia las cadenas de acentos
+      var chars = {
+        "á": "a",
+        "é": "e",
+        "í": "i",
+        "ó": "o",
+        "ú": "u",
+        "à": "a",
+        "è": "e",
+        "ì": "i",
+        "ò": "o",
+        "ù": "u",
+        "ñ": "n",
+        "Á": "A",
+        "É": "E",
+        "Í": "I",
+        "Ó": "O",
+        "Ú": "U",
+        "À": "A",
+        "È": "E",
+        "Ì": "I",
+        "Ò": "O",
+        "Ù": "U",
+        "Ñ": "N",
+        " ": "-",
+        "_": "-"
+      };
+      var expr = /[áàéèíìóòúùñ_ ]/g;
+      this.slug = this.nombre.trim().replace(expr, function (e) {
+        return chars[e];
+      }).toLowerCase();
+      return this.slug;
+    }
+  },
+  methods: {
+    //Metodo que obtiene la categorias
+    getCategory: function getCategory() {
+      var _this = this;
+
+      //Si la categoria es vacia no ejecuta la validacion a nivel de BD
+      if (this.slug != '') {
+        var url = '/api/category/' + this.slug;
+        axios.get(url).then(function (response) {
+          _this.div_mensajeslug = response.data; //Si el slug no existe en la BD
+
+          if (_this.div_mensajeslug == "Slug disponible") {
+            _this.div_clase_slug = 'badge badge-success';
+            _this.deshabilitar_boton = 0;
+          } else {
+            //Si el slug existe en la BD
+            _this.div_clase_slug = 'badge badge-danger';
+            _this.deshabilitar_boton = 1;
+          }
+
+          _this.div_aparecer = true;
+        });
+      }
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -49525,7 +49607,9 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 
 var app = new Vue({
   el: '#app'
-});
+}); //Agregamos la APIs de Vue
+
+__webpack_require__(/*! ./apicategory */ "./resources/js/apicategory.js");
 
 /***/ }),
 
@@ -49544,7 +49628,7 @@ window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
  */
 
 try {
-  window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")["default"]; //window.$ = window.jQuery = require('jquery');
+  window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")["default"];
 
   __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
 } catch (e) {}
