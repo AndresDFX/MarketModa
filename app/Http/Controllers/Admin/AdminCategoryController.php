@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class AdminCategoryController extends Controller
 {
+
+    //Middleware para controlar el acceso a estas rutas
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
