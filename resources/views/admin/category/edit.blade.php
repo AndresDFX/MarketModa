@@ -1,12 +1,17 @@
 @extends('template.admin')
 
-@section('titulo','Crear Categoria')
+@section('titulo','Editar categoria')
 
 @section('contenido')
     <div id="apicategory">
 
-    <form action="{{  route('admin.category.store')}}"   method="POST">
+    <form action="{{  route('admin.category.update',$cat->id)}}"   method="POST">
         @csrf
+        @method('PUT')
+
+        <!-- Variables auxiliares para la propiedad mounted de Vueh -->
+        <span style="display:none;" id="editar">{{$editar}}</span>
+        <span style="display:none;" id="nombretemp">{{$cat->nombre}}</span>
 
      <!-- Default box -->
       <div class="card">
@@ -25,14 +30,14 @@
 
             <div class="form-group">
                 <label for="nombre">Nombre </label>
-                <input v-model="nombre"
+                <input v-model="nombre" value="{{ $cat->nombre }}"
 
                 @blur="getCategory"
                 @focus = "div_aparecer = false"
 
-                class="form-control" type="text" name="nombre" id="nombre">
+                class="form-control" type="text" name="nombre" id="nombre" ><br>
                 <label for="slug">Slug </label>
-                <input readonly v-model="generarSlug" class="form-control" type="text" name="slug" id="slug">
+                <input readonly v-model="generarSlug" class="form-control" type="text" name="slug" id="slug" value="{{ $cat->slug }}">
                 <div v-if="div_aparecer" v-bind:class="div_clase_slug">
 
                     @{{div_mensajeslug}}
@@ -41,8 +46,8 @@
                 <br><br v-if="div_aparecer">
 
 
-                <label for="descripcion">Descripcion </label>
-                <textarea class="form-control" name="descripcion" id="descripcion" cols="30" rows="5"></textarea>
+                <label for="descripcion"> Descripcion</label>
+                <textarea class="form-control" name="descripcion" id="descripcion" cols="30" rows="5">{{ $cat->descripcion }}</textarea>
 
 
 

@@ -49506,7 +49506,7 @@ var apicategory = new Vue({
     div_mensajeslug: 'Slug no disponible',
     div_clase_slug: 'badge badge-danger',
     div_aparecer: false,
-    deshabilitar_boton: 0
+    deshabilitar_boton: 1
   },
   computed: {
     generarSlug: function generarSlug() {
@@ -49567,6 +49567,12 @@ var apicategory = new Vue({
           _this.div_aparecer = true;
         });
       }
+    }
+  },
+  mounted: function mounted() {
+    if (document.getElementById('editar').innerHTML) {
+      this.nombre = document.getElementById('nombretemp').innerHTML;
+      this.deshabilitar_boton = 0;
     }
   }
 });
