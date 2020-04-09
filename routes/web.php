@@ -2,6 +2,7 @@
 
 use App\Product;
 use App\Category;
+use App\Image;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,22 @@ use App\Category;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/prueba', function () {
+
+
+
+
+});
+
+
+Route::get('/resultados', function () {
+
+    $image = App\Image::orderBy('id', 'Desc')->get();
+    return $image;
+});
+
+
 
 Route::get('/', function () {
 

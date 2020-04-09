@@ -29,7 +29,7 @@ Loading...
     ```
 
 - Configurar el acceso a la BD en el archivo .env Si usas XAMPP, el username es root y puedes dejar el password vacío.
-<br>
+
 
 - Generar una nueva clave de Laravel y ejecutar las migraciones.
   
