@@ -49612,7 +49612,7 @@ var apiproduct = new Vue({
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: 'La cantidad no puede ser inferior a 0'
+          text: 'La cantidad no puede ser inferior a 0+'
         });
       }
     },

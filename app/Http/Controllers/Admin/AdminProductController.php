@@ -17,7 +17,7 @@ class AdminProductController extends Controller
     public function index(Request $request)
     {
         $nombre = $request->get('nombre');
-        $productos = Product::where('nombre', 'like', "%$nombre%")->orderBy('nombre')->paginate(2);
+        $productos = Product::with('images', 'category')->where('nombre', 'like', "%$nombre%")->orderBy('nombre')->paginate(2);
         return view('admin.product.index', compact('productos'));
     }
 
