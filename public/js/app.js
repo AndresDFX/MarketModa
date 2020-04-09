@@ -49579,6 +49579,94 @@ var apicategory = new Vue({
 
 /***/ }),
 
+/***/ "./resources/admin/apiproduct.js":
+/*!***************************************!*\
+  !*** ./resources/admin/apiproduct.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var apiproduct = new Vue({
+  el: '#apiproduct',
+  data: {
+    nombre: '',
+    slug: '',
+    div_mensajeslug: 'Slug no disponible',
+    div_clase_slug: 'badge badge-danger',
+    div_aparecer: false,
+    deshabilitar_boton: 1
+  },
+  computed: {
+    generarSlug: function generarSlug() {
+      //Limpia las cadenas de acentos
+      var chars = {
+        "á": "a",
+        "é": "e",
+        "í": "i",
+        "ó": "o",
+        "ú": "u",
+        "à": "a",
+        "è": "e",
+        "ì": "i",
+        "ò": "o",
+        "ù": "u",
+        "ñ": "n",
+        "Á": "A",
+        "É": "E",
+        "Í": "I",
+        "Ó": "O",
+        "Ú": "U",
+        "À": "A",
+        "È": "E",
+        "Ì": "I",
+        "Ò": "O",
+        "Ù": "U",
+        "Ñ": "N",
+        " ": "-",
+        "_": "-"
+      };
+      var expr = /[áàéèíìóòúùñ_ ]/g;
+      this.slug = this.nombre.trim().replace(expr, function (e) {
+        return chars[e];
+      }).toLowerCase();
+      return this.slug;
+    }
+  },
+  methods: {
+    //Metodo que obtiene la productos
+    getProduct: function getProduct() {
+      var _this = this;
+
+      //Si la producto es vacia no ejecuta la validacion a nivel de BD
+      if (this.slug != '') {
+        var url = '/api/product/' + this.slug;
+        axios.get(url).then(function (response) {
+          _this.div_mensajeslug = response.data; //Si el slug no existe en la BD
+
+          if (_this.div_mensajeslug == "Slug disponible") {
+            _this.div_clase_slug = 'badge badge-success';
+            _this.deshabilitar_boton = 0;
+          } else {
+            //Si el slug existe en la BD
+            _this.div_clase_slug = 'badge badge-danger';
+            _this.deshabilitar_boton = 1;
+          }
+
+          _this.div_aparecer = true;
+        });
+      }
+    }
+  },
+  mounted: function mounted() {
+    if (document.getElementById('editar')) {
+      this.nombre = document.getElementById('nombretemp').innerHTML;
+      this.deshabilitar_boton = 0;
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -49624,7 +49712,7 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-//Administracion de las APIs de Vue deacuerdo al id
+//Administracion de las APIs de VueJS
 
 if (document.getElementById('app')) {
   var app = new Vue({
@@ -49634,6 +49722,10 @@ if (document.getElementById('app')) {
 
 if (document.getElementById('apicategory')) {
   __webpack_require__(/*! ../admin/apicategory */ "./resources/admin/apicategory.js");
+}
+
+if (document.getElementById('apiproduct')) {
+  __webpack_require__(/*! ../admin/apiproduct */ "./resources/admin/apiproduct.js");
 }
 
 if (document.getElementById('confirmar_eliminar')) {

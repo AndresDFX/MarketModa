@@ -28,7 +28,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 
 
-//Administracion de las APIs de Vue deacuerdo al id
+//Administracion de las APIs de VueJS
 
 if (document.getElementById('app')) {
     const app = new Vue({
@@ -38,6 +38,10 @@ if (document.getElementById('app')) {
 
 if (document.getElementById('apicategory')) {
     require('../admin/apicategory');
+}
+
+if (document.getElementById('apiproduct')) {
+    require('../admin/apiproduct');
 }
 
 if (document.getElementById('confirmar_eliminar')) {

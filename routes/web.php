@@ -42,7 +42,6 @@ Route::get('/', function () {
     //$cat = Category::find(1)->products;
     //return $cat;
 
-    //return view('welcome');
     return view ('tienda.index');
 });
 
