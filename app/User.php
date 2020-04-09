@@ -36,4 +36,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //Creamos una relacion uno a uno (un usuario tiene una foto)
+    public function image()
+    {
+        return $this->morphMany('App\Image', 'imageable');
+    }
 }
