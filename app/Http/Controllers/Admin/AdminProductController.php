@@ -40,7 +40,39 @@ class AdminProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $prod = new Product();
+
+        //Guardamos todos los campos del request en la nueva variable
+        $prod->nombre=                              $request->nombre;
+        $prod->slug=                                $request->slug;
+        $prod->category_id=                         $request->category_id;
+        $prod->cantidad=                            $request->cantidad;
+        $prod->precio_anterior=                     $request->precioanterior;
+        $prod->precio_actual=                       $request->precioactual;
+        $prod->porcentaje_descuento=                $request->porcentajededescuento;
+        $prod->descripcion_corta=                   $request->descripcion_corta;
+        $prod->descripcion_larga=                   $request->descripcion_larga;
+        $prod->especificaciones=                    $request->especificaciones;
+        $prod->datos_de_interes=                    $request->datos_de_interes;
+        $prod->estado=                              $request->estado;
+
+
+        //Validacion para cuando estan puestos o no los checks
+        if($request->activo){
+            $prod->activo = 'Si';
+        }else{
+            $prod->activo = 'No';
+        }
+
+        if ($request->sliderprincipal) {
+            $prod->sliderprincipal = 'Si';
+        } else {
+            $prod->sliderprincipal = 'No';
+        }
+
+        $prod->save();
+
+        return $prod;
     }
 
     /**
