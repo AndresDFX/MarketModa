@@ -4,12 +4,16 @@ const apicategory = new Vue({
     el: '#apicategory',
 
     data: {
+
+        //Informacion basica
         nombre: '',
         slug: '',
         div_mensajeslug: 'Slug no disponible',
         div_clase_slug: 'badge badge-danger',
         div_aparecer: false,
         deshabilitar_boton: 1
+
+
 
     },
 

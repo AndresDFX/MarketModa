@@ -105,6 +105,7 @@
                     @blur="getProduct"
                     @focus = "div_aparecer= false"class="form-control" type="text" id="nombre" name="nombre">
 
+                <br>
                   <label>Slug</label>
                   <input
                   readonly
@@ -139,8 +140,11 @@
 
 
                   </select>
+                  <br>
                   <label>Cantidad</label>
-                  <input class="form-control" type="number" id="cantidad" name="cantidad" >
+                  <input
+                  v-model="cantidad"
+                  class="form-control" type="number" id="cantidad" name="cantidad" step="any" min="0">
                 </div>
                 <!-- /.form-group -->
 
@@ -161,95 +165,107 @@
 
 
 
-         <div class="card card-success">
-          <div class="card-header">
-            <h3 class="card-title">Sección de Precios</h3>
+            <div class="card card-success">
+                <div class="card-header">
+                    <h3 class="card-title">Sección de Precios</h3>
 
-
-          </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-            <div class="row">
-
-
-
-              <div class="col-md-3">
-                <div class="form-group">
-
-                  <label>Precio anterior</label>
-
-
-
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">$</span>
-                  </div>
-                  <input class="form-control" type="number" id="precioanterior" name="precioanterior" min="0" value="0" step=".01">
-                </div>
 
                 </div>
-                <!-- /.form-group -->
-
-              </div>
-              <!-- /.col -->
-
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <div class="row">
 
 
-              <div class="col-md-3">
-                <div class="form-group">
 
-                  <label>Precio actual</label>
-                   <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">$</span>
-                  </div>
-                  <input class="form-control" type="number" id="precioactual" name="precioactual" min="0" value="0" step=".01">
+                        <div class="col-md-3">
+                            <div class="form-group">
+
+                                <label>Precio anterior</label>
+
+
+
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">$</span>
+                                    </div>
+                                    <input
+                                    v-model="precioanterior"
+                                    class="form-control" type="number" id="precioanterior" name="precioanterior" min="0"
+                                        value="0" step=".01">
+                                </div>
+
+                            </div>
+                            <!-- /.form-group -->
+
+                        </div>
+                        <!-- /.col -->
+
+
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+
+                                <label>Precio actual</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">$</span>
+                                    </div>
+                                    <input
+                                    v-model="precioactual"
+                                    class="form-control" type="number" id="precioactual" name="precioactual" min="0"
+                                        value="0" step=".01">
+                                </div>
+
+                                <br>
+                                <span id="descuento"></span>
+                                    @{{generarDescuento}}
+                            </div>
+                            <!-- /.form-group -->
+
+                        </div>
+                        <!-- /.col -->
+
+
+
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+
+                                <label>Porcentaje de descuento</label>
+                                <div class="input-group">
+                                    <input
+                                    v-model="porcentajededescuento"
+                                    class="form-control" type="number" id="porcentajededescuento"
+                                        name="porcentajededescuento" step="any" min="0" max="100" value="0">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+
+                                </div>
+
+                                <br>
+                                <div class="progress">
+                                    <div id="barraprogreso" class="progress-bar" role="progressbar"
+                                    v-bind:style="{width: porcentajededescuento+'%'}"
+                                        aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">@{{porcentajededescuento}}%</div>
+                                </div>
+                            </div>
+                            <!-- /.form-group -->
+
+                        </div>
+                        <!-- /.col -->
+
+
+                    </div>
+                    <!-- /.row -->
+
+
                 </div>
-
-                <br>
-                <span id="descuento"></span>
-                </div>
-                <!-- /.form-group -->
-
-              </div>
-              <!-- /.col -->
-
-
-
-
-              <div class="col-md-6">
-                <div class="form-group">
-
-                  <label>Porcentaje de descuento</label>
-                   <div class="input-group">
-                  <input class="form-control" type="number" id="porcentajededescuento" name="porcentajededescuento" step="any" min="0" min="100" value="0" >    <div class="input-group-prepend">
-                    <span class="input-group-text">%</span>
-                  </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
 
                 </div>
-
-                <br>
-                <div class="progress">
-                    <div id="barraprogreso" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
-                </div>
-                </div>
-                <!-- /.form-group -->
-
-              </div>
-              <!-- /.col -->
-
-
             </div>
-            <!-- /.row -->
-
-
-          </div>
-          <!-- /.card-body -->
-          <div class="card-footer">
-
-          </div>
-        </div>
-        <!-- /.card -->
 
 
 

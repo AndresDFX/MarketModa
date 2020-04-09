@@ -4,16 +4,40 @@ const apiproduct = new Vue({
     el: '#apiproduct',
 
     data: {
+
+        //Informacion basica
         nombre: '',
         slug: '',
         div_mensajeslug: 'Slug no disponible',
         div_clase_slug: 'badge badge-danger',
         div_aparecer: false,
-        deshabilitar_boton: 1
+        deshabilitar_boton: 1,
+        cantidad:0,
+
+        //Precio
+        precioanterior: 0,
+        precioactual: 0,
+        descuento: 0,
+        porcentajededescuento: 0,
+        descuento_mensaje: '0'
 
     },
 
     computed: {
+
+        controlarCantidad: function () {
+
+            if (this.cantidad < 0) {
+                this.cantidad = 0;
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'La cantidad no puede ser inferior a 0',
+                })
+            }
+
+        },
+
         generarSlug: function () {
 
             //Limpia las cadenas de acentos
@@ -27,6 +51,53 @@ const apiproduct = new Vue({
             var expr = /[áàéèíìóòúùñ_ ]/g;
             this.slug = this.nombre.trim().replace(expr, function (e) { return chars[e] }).toLowerCase()
             return this.slug;
+        },
+
+        generarDescuento: function () {
+
+            if (this.porcentajededescuento > 0 && this.porcentajededescuento < 100) {
+
+                this.descuento = (this.precioanterior * this.porcentajededescuento) / 100;
+                this.precioactual = this.precioanterior - this.descuento;
+                this.descuento_mensaje = 'Hay un descuento de $ ' + this.descuento;
+            }
+
+
+            else if (this.porcentajededescuento > 100) {
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'El descuento no puede ser superior a 100',
+                })
+
+                this.porcentajededescuento = 100;
+                this.descuento = (this.precioanterior * this.porcentajededescuento) / 100;
+                this.precioactual = this.precioanterior - this.descuento;
+                this.descuento_mensaje = '';
+            }
+
+            else if (this.porcentajededescuento < 0) {
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'El descuento no puede ser inferior a 0',
+                })
+
+                this.porcentajededescuento = 0;
+                this.descuento = (this.precioanterior * this.porcentajededescuento) / 100;
+                this.precioactual = this.precioanterior - this.descuento;
+                this.descuento_mensaje = '';
+            }
+
+            else {
+
+                this.precioactual = this.precioanterior;
+                this.descuento_mensaje = '';
+            }
+            return this.descuento_mensaje;
+
         }
 
     },
