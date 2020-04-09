@@ -40,6 +40,6 @@ class User extends Authenticatable
     //Creamos una relacion uno a uno (un usuario tiene una foto)
     public function image()
     {
-        return $this->morphMany('App\Image', 'imageable');
+        return $this->morphOne('App\Image', 'imageable');
     }
 }
