@@ -40,6 +40,30 @@ class AdminProductController extends Controller
      */
     public function store(Request $request)
     {
+        //Validacion deacuerdo al migracion de la peticion en la BD
+        $request->validate([
+            'nombre' => 'required|unique:products,nombre',
+            'slug' => 'required|unique:products,slug',
+            'imagenes.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+
+        ]);
+
+        //Validacion de las URL de las imagenes que se pasan en el file chooser
+        $urlimagenes = [];
+        if($request->hasFile('imagenes')){
+            $imagenes = $request->file('imagenes');
+
+            foreach($imagenes as $imagen){
+
+                $nombre = time().'_'.$imagen->getClientOriginalName();
+                $ruta = public_path().'/imagenes';
+                $imagen->move($ruta, $nombre);
+                $urlimagenes []['url'] = '/imagenes/'.$nombre;
+            }
+
+        }
+
+        //Creamos la nueva instancia del producto
         $prod = new Product();
 
         //Guardamos todos los campos del request en la nueva variable
@@ -70,9 +94,16 @@ class AdminProductController extends Controller
             $prod->sliderprincipal = 'No';
         }
 
+
+
         $prod->save();
 
-        return $prod;
+        //Guardamos las urls de las imagenes almacenadas en el array que creamos
+        $prod->images()->createMany($urlimagenes);
+
+        return redirect()->route('admin.product.index')->with('datos', 'Registro creado correctamente');
+        //return $prod->images;
+
     }
 
     /**

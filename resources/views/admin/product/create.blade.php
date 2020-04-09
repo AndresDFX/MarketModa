@@ -341,13 +341,23 @@
           <!-- /.card-header -->
           <div class="card-body">
 
+            <!-- Section: Añadir imagenes -->
             <div class="form-group">
 
-               <label for="archivosimagenes">Subir varias imagenes</label>
+               <label for="imagenes">Añadir imagenes</label>
 
-               <input type="file" class="form-control-file" id="archivosimagenes[]" multiple
-               accept="image/*" >
+               <input type="file" class="form-control-file" name="imagenes[]" id="imagenes[]" multiple accept="image/*" >
+               <br>
+               <div class="description">
+                    Un numero ilimitado de archivos pueden ser cargados en este campo.
+                    <br>
+                    Limite de 2MB por imagen.
+                    <br>
+                    Tipos permitidos: jpeg, png, jpg, gif, svg.
+                    <br>
+               </div>
             </div>
+            <!-- Endsection -->
 
 
           </div>

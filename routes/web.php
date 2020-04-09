@@ -18,15 +18,12 @@ use App\Image;
 Route::get('/prueba', function () {
 
 
-    $productos = App\Product::with('images:id,imageable_id,url', 'category:id,nombre,slug')->find(1);
-    return $productos;
+
 });
 
 
 Route::get('/resultados', function () {
 
-    $image = App\Image::orderBy('id', 'Desc')->get();
-    return $image;
 });
 
 
