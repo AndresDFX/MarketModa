@@ -65,13 +65,13 @@ const apicategory = new Vue({
 
 
     },
-    mounted(){
+    mounted() {
 
         if (document.getElementById('editar')) {
             this.nombre = document.getElementById('nombretemp').innerHTML;
             this.deshabilitar_boton = 0;
         }
-        console.log(data);
+
 
     }
 

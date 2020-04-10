@@ -25,17 +25,16 @@
 
 <script>
 
+    //Datos para vista editar
     window.data = {
+
         editar:'Si',
-
+        
         datos:{
-            "nombre":"Hombre",
-            "precioanterior":"100",
-            "porcentajededescuento":"100",
-
-
+            "nombre":"{{$productos->nombre}}",
+            "precioanterior":"{{$productos->precio_anterior}}",
+            "porcentajededescuento":"{{$productos->porcentaje_descuento}}"
         }
-
     }
 
   $(function () {

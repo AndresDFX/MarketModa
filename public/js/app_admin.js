@@ -14655,8 +14655,6 @@ var apicategory = new Vue({
       this.nombre = document.getElementById('nombretemp').innerHTML;
       this.deshabilitar_boton = 0;
     }
-
-    console.log(data);
   }
 });
 
@@ -14791,10 +14789,13 @@ var apiproduct = new Vue({
     }
   },
   mounted: function mounted() {
-    if (document.getElementById('editar')) {
-      this.nombre = document.getElementById('nombretemp').innerHTML;
+    if (data.editar == 'Si') {
+      this.nombre = data.datos.nombre;
+      this.precioanterior = data.datos.precioanterior;
+      this.porcentajededescuento = data.datos.porcentajededescuento;
       this.deshabilitar_boton = 0;
-    }
+    } //console.log(data);
+
   }
 });
 
