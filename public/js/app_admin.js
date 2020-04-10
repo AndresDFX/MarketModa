@@ -14655,6 +14655,8 @@ var apicategory = new Vue({
       this.nombre = document.getElementById('nombretemp').innerHTML;
       this.deshabilitar_boton = 0;
     }
+
+    console.log(data);
   }
 });
 

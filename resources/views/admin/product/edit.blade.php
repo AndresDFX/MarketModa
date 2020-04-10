@@ -25,6 +25,19 @@
 
 <script>
 
+    window.data = {
+        editar:'Si',
+
+        datos:{
+            "nombre":"Hombre",
+            "precioanterior":"100",
+            "porcentajededescuento":"100",
+
+
+        }
+
+    }
+
   $(function () {
     //Initialize Select2 Elements
         $('#category_id').select2()
@@ -34,7 +47,7 @@
         theme: 'bootstrap4'
         });
     });
-}
+
 
 </script>
 @endsection
