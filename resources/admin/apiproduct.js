@@ -1,5 +1,4 @@
 
-
 const apiproduct = new Vue({
     el: '#apiproduct',
 
@@ -25,18 +24,6 @@ const apiproduct = new Vue({
 
     computed: {
 
-        controlarCantidad: function () {
-
-            if (this.cantidad < 0) {
-                this.cantidad = 0;
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'La cantidad no puede ser inferior a 0+',
-                })
-            }
-
-        },
 
         generarSlug: function () {
 
@@ -104,7 +91,7 @@ const apiproduct = new Vue({
 
     methods: {
 
-        //Metodo que obtiene la productos
+        //Metodo que obtiene la productos con Axios
         getProduct() {
 
             //Si la producto es vacia no ejecuta la validacion a nivel de BD
@@ -129,11 +116,24 @@ const apiproduct = new Vue({
             }
         },
 
+        //Metodo para controlar la cantidad de elementos de un producto
+        controlarCantidad() {
 
+            if (this.cantidad < 0) {
+                this.cantidad = 0;
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'La cantidad no puede ser inferior a 0',
+                })
+            }
+
+        }
 
     },
-    mounted(){
 
+
+    mounted(){
 
         if (data.editar=='Si') {
             this.nombre = data.datos.nombre;
@@ -141,9 +141,6 @@ const apiproduct = new Vue({
             this.porcentajededescuento = data.datos.porcentajededescuento;
             this.deshabilitar_boton = 0;
         }
-
-
-        //console.log(data);
     }
 
 

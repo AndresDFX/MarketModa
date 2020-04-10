@@ -14686,16 +14686,6 @@ var apiproduct = new Vue({
     descuento_mensaje: '0'
   },
   computed: {
-    controlarCantidad: function controlarCantidad() {
-      if (this.cantidad < 0) {
-        this.cantidad = 0;
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'La cantidad no puede ser inferior a 0+'
-        });
-      }
-    },
     generarSlug: function generarSlug() {
       //Limpia las cadenas de acentos
       var chars = {
@@ -14764,7 +14754,7 @@ var apiproduct = new Vue({
     }
   },
   methods: {
-    //Metodo que obtiene la productos
+    //Metodo que obtiene la productos con Axios
     getProduct: function getProduct() {
       var _this = this;
 
@@ -14786,6 +14776,17 @@ var apiproduct = new Vue({
           _this.div_aparecer = true;
         });
       }
+    },
+    //Metodo para controlar la cantidad de elementos de un producto
+    controlarCantidad: function controlarCantidad() {
+      if (this.cantidad < 0) {
+        this.cantidad = 0;
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'La cantidad no puede ser inferior a 0'
+        });
+      }
     }
   },
   mounted: function mounted() {
@@ -14794,8 +14795,7 @@ var apiproduct = new Vue({
       this.precioanterior = data.datos.precioanterior;
       this.porcentajededescuento = data.datos.porcentajededescuento;
       this.deshabilitar_boton = 0;
-    } //console.log(data);
-
+    }
   }
 });
 

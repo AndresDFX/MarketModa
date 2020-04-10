@@ -29,7 +29,7 @@
     window.data = {
 
         editar:'Si',
-        
+
         datos:{
             "nombre":"{{$productos->nombre}}",
             "precioanterior":"{{$productos->precio_anterior}}",
@@ -186,10 +186,13 @@
                   </select>
                   <br>
                   <label>Cantidad</label>
+
                   <input
                   v-model="cantidad"
                   value= "{{$productos->cantidad}}"
+                  @blur="controlarCantidad"
                   class="form-control" type="number" id="cantidad" name="cantidad" step="any" min="0">
+
                 </div>
                 <!-- /.form-group -->
 
