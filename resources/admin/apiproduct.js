@@ -5,7 +5,7 @@ const apiproduct = new Vue({
     data: {
 
         //Informacion basica
-        nombre: '',
+        nombre: 'a',
         slug: '',
         div_mensajeslug: 'Slug no disponible',
         div_clase_slug: 'badge badge-danger',
@@ -90,6 +90,40 @@ const apiproduct = new Vue({
     },
 
     methods: {
+
+
+        eliminarImagen(imagen) {
+            Swal.fire({
+                title: '¿Esta seguro de eliminar la imagen '+imagen.id+' ?',
+                text: "No podras revertir esta accion!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '¡Si, Eliminar!',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.value) {
+
+                    //Eliminar elemento
+                    let url = '/api/eliminarimagen/' + imagen.id;
+                    axios.delete(url).then(response => {
+                        console.log(response.data);
+                    });
+
+                    var elemento = document.getElementById('idimagen-' + imagen.id);
+                    elemento.parentNode.removeChild(elemento);
+                    console.log(elemento);
+
+                    Swal.fire(
+                        '¡Eliminado!',
+                        'Su archivo ha sido eliminado.',
+                        'success'
+                    )
+                }
+            })
+
+        },
 
         //Metodo que obtiene la productos con Axios
         getProduct() {

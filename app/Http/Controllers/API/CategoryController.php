@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
+//Import model de categoria
 use App\Category;
 
 class CategoryController extends Controller
@@ -15,7 +17,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        /**$cat = new Category();
+        /**Crear una nueva categoria: $cat = new Category();
         $cat->nombre = 'Mujer';
         $cat->slug = 'mujer';
         $cat->descripcion = 'Ropa para mujeres';

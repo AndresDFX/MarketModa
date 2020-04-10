@@ -283,8 +283,14 @@
                                 </div>
 
                                 <br>
-                                <span id="descuento"></span>
+
+
+                                <div id="descuento" v-bind:class="{'badge badge-success': porcentajededescuento>0 ,'badge badge-success': porcentajededescuento<100}">
                                     @{{generarDescuento}}
+                                </div>
+
+
+
                             </div>
                             <!-- /.form-group -->
 
@@ -468,7 +474,7 @@
         <div class="card card-primary">
             <div class="card-header">
             <div class="card-title">
-                Ekko Lightbox
+                Galeria de imagenes
             </div>
             </div>
             <div class="card-body">
@@ -476,12 +482,14 @@
 
             @foreach ($productos->images as $image)
 
-                <div class="col-sm-2">
+                <div id="idimagen-{{$image->id}}" class="col-sm-2">
                     <a href="{{$image->url}}" data-toggle="lightbox" data-title="ID:{{$image->id}}" data-gallery="gallery">
-                        <img src="{{$image->url}}" class="img-fluid mb-2"/>
+                        <img style="width:150px; height:150px;" src="{{$image->url}}" class="img-fluid mb-2"/>
                     </a>
                     <br>
-                    <a href="{{$image->url}}">
+                    <a href="{{$image->url}}"
+                        v-on:click.prevent="eliminarImagen({{$image }})"
+                    >
                         <i class="fas fa-trash-alt" style="color:red;"></i>
                     </a>
                 </div>

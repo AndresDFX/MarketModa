@@ -102,7 +102,7 @@ class AdminProductController extends Controller
         $prod->images()->createMany($urlimagenes);
 
         return redirect()->route('admin.product.index')->with('datos', 'Registro creado correctamente');
-        //return $prod->images;
+
 
     }
 

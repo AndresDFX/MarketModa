@@ -23,7 +23,20 @@
 <script src="/adminlte/plugins/select2/js/select2.full.min.js"></script>
 <script src="/adminlte/ckeditor/ckeditor.js"></script>
 
+
+
+
 <script>
+
+    //Datos para vista crear in Vue
+    window.data = {
+
+        datos:{
+            "nombre":nombre,
+            "slug":slug,
+
+        }
+    }
 
   $(function () {
     //Initialize Select2 Elements
@@ -176,6 +189,7 @@
                   <label>Cantidad</label>
                   <input
                   v-model="cantidad"
+                  @blur="controlarCantidad"
                   class="form-control" type="number" id="cantidad" name="cantidad" step="any" min="0">
                 </div>
                 <!-- /.form-group -->
@@ -249,8 +263,18 @@
                                 </div>
 
                                 <br>
-                                <span id="descuento"></span>
+
+
+
+                                <div id="descuento" v-bind:class="{'badge badge-success': porcentajededescuento>0 ,'badge badge-success': porcentajededescuento<100}">
                                     @{{generarDescuento}}
+                                </div>
+
+
+
+
+
+
                             </div>
                             <!-- /.form-group -->
 
