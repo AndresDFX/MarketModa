@@ -74,8 +74,9 @@
 
 
 <div id="apiproduct">
-    <form action="{{ route('admin.product.store') }}" method="POST" enctype="multipart/form-data" >
+    <form action="{{ route('admin.product.update', $productos->id) }}" method="POST" enctype="multipart/form-data" >
     @csrf
+    @method('PUT')
 
   <!-- Main content -->
     <section class="content">
@@ -84,7 +85,7 @@
 
 
 
-      <div class="card card-success">
+      <div class="card card-info">
           <div class="card-header">
             <h3 class="card-title">Datos generados automáticamente</h3>
 
@@ -148,7 +149,7 @@
 
 
 
-        <div class="card card-info">
+        <div class="card card-dark">
           <div class="card-header">
             <h3 class="card-title">Datos del producto</h3>
 

@@ -140,7 +140,67 @@ class AdminProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //Validacion deacuerdo al migracion de la peticion en la BD
+        $request->validate([
+            'nombre' => 'required|unique:products,nombre,'.$id,
+            'slug' => 'required|unique:products,slug,'.$id,
+            'imagenes.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+
+        ]);
+
+        //Validacion de las URL de las imagenes que se pasan en el file chooser
+        $urlimagenes = [];
+        if ($request->hasFile('imagenes')) {
+            $imagenes = $request->file('imagenes');
+
+            foreach ($imagenes as $imagen) {
+
+                $nombre = time() . '_' . $imagen->getClientOriginalName();
+                $ruta = public_path() . '/imagenes';
+                $imagen->move($ruta, $nombre);
+                $urlimagenes[]['url'] = '/imagenes/' . $nombre;
+            }
+        }
+
+        //Creamos la nueva instancia del producto
+        $prod = Product::findOrFail($id);
+
+        //Guardamos todos los campos del request en la nueva variable
+        $prod->nombre =                              $request->nombre;
+        $prod->slug =                                $request->slug;
+        $prod->category_id =                         $request->category_id;
+        $prod->cantidad =                            $request->cantidad;
+        $prod->precio_anterior =                     $request->precioanterior;
+        $prod->precio_actual =                       $request->precioactual;
+        $prod->porcentaje_descuento =                $request->porcentajededescuento;
+        $prod->descripcion_corta =                   $request->descripcion_corta;
+        $prod->descripcion_larga =                   $request->descripcion_larga;
+        $prod->especificaciones =                    $request->especificaciones;
+        $prod->datos_de_interes =                    $request->datos_de_interes;
+        $prod->estado =                              $request->estado;
+
+
+        //Validacion para cuando estan puestos o no los checks
+        if ($request->activo) {
+            $prod->activo = 'Si';
+        } else {
+            $prod->activo = 'No';
+        }
+
+        if ($request->sliderprincipal) {
+            $prod->sliderprincipal = 'Si';
+        } else {
+            $prod->sliderprincipal = 'No';
+        }
+
+
+
+        $prod->save();
+
+        //Guardamos las urls de las imagenes almacenadas en el array que creamos
+        $prod->images()->createMany($urlimagenes);
+
+        return redirect()->route('admin.product.edit',$prod->slug)->with('datos', 'Registro actualizado correctamente');
     }
 
     /**

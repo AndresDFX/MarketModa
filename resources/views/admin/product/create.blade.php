@@ -67,7 +67,7 @@
 
 
 
-      <div class="card card-success">
+      <div class="card card-info">
           <div class="card-header">
             <h3 class="card-title">Datos generados automáticamente</h3>
 
@@ -131,7 +131,7 @@
 
 
 
-        <div class="card card-info">
+        <div class="card card-dark">
           <div class="card-header">
             <h3 class="card-title">Datos del producto</h3>
 
