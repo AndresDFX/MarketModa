@@ -123,9 +123,12 @@ class AdminProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $productos = Product::with('images', 'category')->where('slug',$slug)->firstOrFail();
+        $categorias = Category::orderBy('nombre')->get();
+
+        return view('admin.product.edit', compact('productos','categorias'));
     }
 
     /**

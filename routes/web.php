@@ -17,7 +17,8 @@ use App\Image;
 
 Route::get('/prueba', function () {
 
-
+    $productos = App\Product::with('images', 'category')->orderBy('id','desc')->get();
+    return $productos;
 
 });
 
