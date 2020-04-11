@@ -144,7 +144,15 @@ const apiproduct = new Vue({
                         this.deshabilitar_boton = 1;
                     }
                     this.div_aparecer = true;
-                    console.log(response);
+
+                    if (data.datos.nombre) {
+                        if (data.datos.nombre == this.nombre) {
+                            this.deshabilitar_boton = 0;
+                            this.div_mensajeslug = '';
+                            this.div_clase_slug = '';
+                            this.div_aparecer = false;
+                        }
+                    }
 
 
                 })

@@ -422,7 +422,7 @@
                <div class="description">
                     Un numero ilimitado de archivos pueden ser cargados en este campo.
                     <br>
-                    Limite de 2MB por imagen.
+                    Limite de 2 MB por imagen.
                     <br>
                     Tipos permitidos: jpeg, png, jpg, gif, svg.
                     <br>

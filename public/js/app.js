@@ -49718,7 +49718,15 @@ var apiproduct = new Vue({
           }
 
           _this.div_aparecer = true;
-          console.log(response);
+
+          if (data.datos.nombre) {
+            if (data.datos.nombre == _this.nombre) {
+              _this.deshabilitar_boton = 0;
+              _this.div_mensajeslug = '';
+              _this.div_clase_slug = '';
+              _this.div_aparecer = false;
+            }
+          }
         });
       }
     },
