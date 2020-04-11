@@ -173,8 +173,7 @@
                   <input
                   readonly
                   v-model="generarSlug"
-                  class="form-control" type="text" id="slug" name="slug"
-                    v-bind:class="{'badge badge-success': porcentajededescuento>0 ,'badge badge-success': porcentajededescuento<100}">
+                  class="form-control" type="text" id="slug" name="slug">
                   <div v-if="div_aparecer" v-bind:class="div_clase_slug">
                            @{{ div_mensajeslug }}
                         </div>
