@@ -51,7 +51,7 @@
                 </div>
               </div>
               <!-- /.card-header -->
-              <div class="card-body table-responsive p-0" style="height: 300px;">
+              <div class="card-body table-responsive p-0" >
 
                 <table class="table1 table-head-fixed text-nowrap">
                   <thead>
@@ -96,7 +96,7 @@
 
                   </tbody>
                 </table>
-                {{ $productos->appends($_GET)->links()}}
+                {{ $productos->appends($_GET)->links() }}
               </div>
 
               <!-- /.card-body -->

@@ -77,3 +77,6 @@ Route::resource('admin/product', 'Admin\AdminProductController')->names('admin.p
 Route::get('cancelar/{ruta}',function($ruta){
     return redirect()->route($ruta)->with('cancelar', 'Accion cancelada');
 })->name('cancelar');
+
+
+

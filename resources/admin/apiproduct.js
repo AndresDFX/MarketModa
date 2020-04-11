@@ -5,7 +5,7 @@ const apiproduct = new Vue({
     data: {
 
         //Informacion basica
-        nombre: 'a',
+        nombre: '',
         slug: '',
         div_mensajeslug: 'Slug no disponible',
         div_clase_slug: 'badge badge-danger',

@@ -44,6 +44,10 @@ if (document.getElementById('apiproduct')) {
     require('../admin/apiproduct');
 }
 
+if (document.getElementById('api_search_autocomplete')) {
+    require('../admin/api_search_autocomplete');
+}
+
 if (document.getElementById('confirmar_eliminar')) {
     require('./confirmar_eliminar');
 }

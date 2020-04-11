@@ -22,3 +22,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::apiResource('category', 'API\CategoryController')->names('api.category');
 Route::apiResource('product', 'API\ProductController')->names('api.product');
 Route::delete('/eliminarimagen/{id}', 'API\ProductController@eliminarimagen')->name('api.eliminarimagen');
+Route::get('/autocomplete', 'API\AutocompleteController@autocomplete')->name('autocomplete');

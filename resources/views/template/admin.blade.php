@@ -39,17 +39,50 @@
       </li>
     </ul>
 
+    <div id="api_search_autocomplete" style="position:relative">
     <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
+    <form class="form-inline ml-3" autocomplete="off">
       <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"
+        name="nombre"
+        v-model="palabra_a_buscar"
+        v-on:keyup="autoComplete"
+        v-on:keyup.enter="SubmitForm"
+
+        >
         <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
+          <button id="miboton"
+            ref="SubmitButtonSearch"
+            class="btn btn-navbar" type="submit">
             <i class="fas fa-search"></i>
           </button>
         </div>
       </div>
     </form>
+
+
+
+    <div class="panel-footer" v-if="resultados.length"
+      style="position:absolute; z-index:3; left:15px;">
+      <ul class="list-group" style="width:100%">
+        <li class="list-group-item" v-for="resultado in resultados">
+           <a href="#" class="dropdown-item"
+
+           v-on:click.prevent="select(resultado)">
+
+             <span  v-html="resultado.name_negrita">
+
+             </span>
+           </a>
+        </li>
+
+      </ul>
+
+   </div>
+
+
+
+  </div>   <!-- /.div api_search_autocomplete -->
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
@@ -235,7 +268,7 @@
           <!-- Productos en Dashboard -->
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-list"></i>
+              <i class="nav-icon fas fa-tshirt"></i>
               <p> Productos
                 <i class="right fas fa-angle-left"></i>
               </p>
