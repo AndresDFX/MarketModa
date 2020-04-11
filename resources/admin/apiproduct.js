@@ -131,9 +131,9 @@ const apiproduct = new Vue({
             //Si la producto es vacia no ejecuta la validacion a nivel de BD
             if (this.slug != '') {
                 let url = '/api/product/' + this.slug;
+
                 axios.get(url).then(response => {
                     this.div_mensajeslug = response.data;
-
                     //Si el slug no existe en la BD
                     if (this.div_mensajeslug == "Slug disponible") {
                         this.div_clase_slug = 'badge badge-success';
@@ -144,6 +144,7 @@ const apiproduct = new Vue({
                         this.deshabilitar_boton = 1;
                     }
                     this.div_aparecer = true;
+                    console.log(response);
 
 
                 })

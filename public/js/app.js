@@ -49718,6 +49718,7 @@ var apiproduct = new Vue({
           }
 
           _this.div_aparecer = true;
+          console.log(response);
         });
       }
     },

@@ -29,7 +29,8 @@ class AdminProductController extends Controller
     public function create()
     {
         $categorias = Category::orderBy('nombre')->get();
-        return view('admin.product.create', compact('categorias'));
+        $estados_productos = $this->estados_productos();
+        return view('admin.product.create', compact('categorias', 'estados_productos'));
     }
 
     /**
@@ -127,8 +128,9 @@ class AdminProductController extends Controller
     {
         $productos = Product::with('images', 'category')->where('slug',$slug)->firstOrFail();
         $categorias = Category::orderBy('nombre')->get();
+        $estados_productos = $this->estados_productos();
 
-        return view('admin.product.edit', compact('productos','categorias'));
+        return view('admin.product.edit', compact('productos','categorias', 'estados_productos'));
     }
 
     /**
@@ -212,5 +214,23 @@ class AdminProductController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function estados_productos()
+    {
+        return [
+
+            '',
+            'Nuevo',
+            'En Oferta',
+            'Popular'
+
+        ];
     }
 }

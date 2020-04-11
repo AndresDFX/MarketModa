@@ -166,15 +166,15 @@
                   v-model="nombre"
 
                     @blur="getProduct"
-                    @focus = "div_aparecer= false"class="form-control" type="text" id="nombre" name="nombre">
+                    @focus = "div_aparecer= false" class="form-control" type="text" id="nombre" name="nombre">
 
                 <br>
                   <label>Slug</label>
                   <input
                   readonly
                   v-model="generarSlug"
-                  class="form-control" type="text" id="slug" name="slug" >
-
+                  class="form-control" type="text" id="slug" name="slug"
+                    v-bind:class="{'badge badge-success': porcentajededescuento>0 ,'badge badge-success': porcentajededescuento<100}">
                   <div v-if="div_aparecer" v-bind:class="div_clase_slug">
                            @{{ div_mensajeslug }}
                         </div>
@@ -512,8 +512,19 @@
               <div class="col-md-6">
                 <div class="form-group">
 
-                  <label>Estado</label>
-                  <input  class="form-control" type="text" id="estado" name="estado" value="{{$productos->estado}}">
+
+                <label>Estado</label>
+                  <select name="estado" id="estado" class="form-control select2" style="width: 100%;">
+                    @foreach($estados_productos as $estado)
+
+                     @if ($estado == $productos->estado)
+                        <option value="{{ $estado }}" selected="selected">{{ $estado }}</option>
+                     @else
+                        <option value="{{ $estado }}">{{ $estado }}</option>
+                     @endif
+                    @endforeach
+
+                  </select>
 
 
                 </div>

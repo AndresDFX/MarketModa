@@ -130,4 +130,6 @@ class AdminCategoryController extends Controller
         $cat->delete();
         return redirect()->route('admin.category.index')->with('datos', 'Registro eliminado correctamente');
     }
+
+
 }

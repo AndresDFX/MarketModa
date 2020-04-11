@@ -148,7 +148,7 @@
                   v-model="nombre"
 
                     @blur="getProduct"
-                    @focus = "div_aparecer= false"class="form-control" type="text" id="nombre" name="nombre">
+                    @focus = "div_aparecer=false" class="form-control" type="text" id="nombre" name="nombre">
 
                 <br>
                   <label>Slug</label>
@@ -454,8 +454,18 @@
               <div class="col-md-6">
                 <div class="form-group">
 
-                  <label>Estado</label>
-                  <input  class="form-control" type="text" id="estado" name="estado" value="Nuevo">
+                <label>Estado</label>
+                  <select name="estado" id="estado" class="form-control select2" style="width: 100%;">
+                    @foreach($estados_productos as $estado)
+
+                     @if ($estado == 'Nuevo')
+                        <option value="{{ $estado }}" selected="selected">{{ $estado }}</option>
+                     @else
+                        <option value="{{ $estado }}">{{ $estado }}</option>
+                     @endif
+                    @endforeach
+
+                  </select>
 
 
                 </div>
