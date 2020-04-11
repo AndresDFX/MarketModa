@@ -10,6 +10,7 @@ class AutocompleteController extends Controller
 {
     public function autocomplete(Request $request){
 
+
         $palabrabuscar = $request->get('palabrabuscar');
         $Productos = Product::where('nombre','like', '%'. $palabrabuscar.'%')->orderBy('nombre')->get();
 
@@ -28,5 +29,8 @@ class AutocompleteController extends Controller
         }
 
         return $resultados;
+
+
+
     }
 }

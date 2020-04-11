@@ -4,7 +4,7 @@
 
 @section('breadcrumb')
   <li class="breadcrumb-item"><a href="{{route('admin.category.index')}}">Categorías</a></li>
-  <li class="breadcrumb-item active">@yield('titulo')</li>
+  <li class="breadcrumb-item active"><a href="{{route('admin.category.create')}}" style="text-decoration: underline; color:gray;">@yield('titulo')</a></li>
 @endsection
 
 

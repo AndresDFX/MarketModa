@@ -5,8 +5,9 @@
 
 @section('breadcrumb')
 
+
     <li class="breadcrumb-item"><a href="{{route ('admin.category.index')}}">Categorias</a></li>
-    <li class="breadcrumb-item active">@yield('titulo')</li>
+    <li class="breadcrumb-item active"><a href="{{route('admin.category.edit',$cat->slug)}}" style="text-decoration: underline; color:gray;">@yield('titulo')</a></li>
 
 @endsection
 

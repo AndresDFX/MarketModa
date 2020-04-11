@@ -5,7 +5,7 @@
 
 @section('breadcrumb')
   <li class="breadcrumb-item"><a href="{{route('admin.product.index')}}">Productos</a></li>
-  <li class="breadcrumb-item active">@yield('titulo')</li>
+  <li class="breadcrumb-item active"><a href="{{route('admin.product.edit',$productos->slug)}}" style="text-decoration: underline; color:gray;">@yield('titulo')</a></li>
 @endsection
 
 

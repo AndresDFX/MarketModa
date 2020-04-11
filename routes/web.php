@@ -3,6 +3,7 @@
 use App\Product;
 use App\Category;
 use App\Image;
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +16,10 @@ use App\Image;
 |
 */
 
-Route::get('/prueba', function () {
+Route::get('/api/users', function () {
 
-    $productos = App\Product::with('images', 'category')->orderBy('id','desc')->get();
-    return $productos;
-
+    $users = User::all();
+    return $users;
 });
 
 

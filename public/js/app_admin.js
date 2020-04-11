@@ -15391,9 +15391,6 @@ var api_search_autocomplete = new Vue({
       console.log('Estoy ejecutando el submitform');
       this.$refs.SubmitButtonSearch.click();
     }
-  },
-  mounted: function mounted() {
-    console.log('Datos cargados correctamente');
   }
 });
 

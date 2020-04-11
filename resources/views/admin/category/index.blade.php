@@ -3,10 +3,31 @@
 @section('titulo','Administracion de Categorias')
 
 @section('breadcrumb')
-    <li class="breadcrumb-item active">@yield('titulo')</li>
+
+    <li class="breadcrumb-item active"><a href="{{route('admin.category.index')}}" style="text-decoration: underline; color:gray;">@yield('titulo')</a></li>
+
 @endsection
 
 @section('contenido')
+
+<style type="text/css">
+
+    .table1{
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #212529;
+        text-align: center;
+    }
+
+    .table1 td, .table th{
+        padding: .75rem;
+        vertical-align: middle;
+        border-top: 1px solid #dee2e6;
+    }
+
+
+
+</style>
 
         <div class="row" id="confirmar_eliminar">
 
@@ -16,28 +37,27 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Seccion de categorias</h3>
 
-                <div class="card-tools">
-                    <form>
-                        <div class="input-group input-group-sm" style="width: 150px;">
-                            <input type="text" name="nombre" class="form-control float-right" placeholder="Buscar"
+
+                    <form autocomplete="off" >
+                        <div class="input-group input-group-sm" style="width: 200px; ">
+                            <input type="text" name="nombre" class="form-control" placeholder="Buscar por nombre"
                             value="{{request()->get('nombre')}}"
 
                             >
 
                             <div class="input-group-append">
-                            <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
                             </div>
                         </div>
                   </form>
-                </div>
+
               </div>
               <!-- /.card-header -->
               <div class="card-body table-responsive p-0">
 
-                <table class="table table-head-fixed text-nowrap">
-                  <thead>
+                <table class="table1 text-nowrap table-hover table-bordered">
+                  <thead style="background-color:#007BFF; color:white; " >
                     <tr>
                       <th>ID</th>
                       <th>Nombre</th>
@@ -45,7 +65,7 @@
                       <th>Descripcion</th>
                       <th>Fecha creacion</th>
                       <th>Fecha modificacion</th>
-                      <th colspan="3"></th>
+                      <th colspan="3">Acciones</th>
                     </tr>
                   </thead>
                   <tbody>

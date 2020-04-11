@@ -15,10 +15,11 @@ const api_search_autocomplete = new Vue({
                     { params: { palabrabuscar: this.palabra_a_buscar } }
                 ).then(response => {
                     this.resultados = response.data;
+
                     console.log(response.data);
                 });
             }
-
+      
 
 
         },
@@ -41,9 +42,6 @@ const api_search_autocomplete = new Vue({
 
 
     },
-    mounted() {
-        console.log('Datos cargados correctamente');
 
-    }
 
 });
