@@ -7,8 +7,16 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
 
+//Libreria manejo de archivos
+use Illuminate\Support\Facades\File;
+
 class AdminProductController extends Controller
 {
+    //Middleware para controlar el acceso a estas rutas
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -217,7 +225,16 @@ class AdminProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $producto = Product::with('images')->findOrFail($id);
+        foreach($producto->images as $imagen){
+
+            $archivo = substr($imagen->url, 1);
+            File::delete($archivo);
+            $imagen->delete();
+
+        }
+       $producto->delete();
+       return redirect()->route('admin.product.index')->with('datos', 'Registro eliminado correctamente');
     }
 
     /**

@@ -57,6 +57,15 @@ const apicategory = new Vue({
                     }
                     this.div_aparecer = true;
 
+                    if (document.getElementById('editar').innerHTML) {
+                        if (document.getElementById('nombretemp').innerHTML == this.nombre) {
+                            this.deshabilitar_boton = 0;
+                            this.div_mensajeslug = '';
+                            this.div_clase_slug = '';
+                            this.div_aparecer = false;
+                        }
+                    }
+
 
                 })
             }

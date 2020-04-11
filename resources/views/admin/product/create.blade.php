@@ -189,7 +189,7 @@
                   <input
                   v-model="cantidad"
                   @blur="controlarCantidad"
-                  class="form-control" type="number" id="cantidad" name="cantidad" step="any" min="0">
+                  class="form-control" type="number" id="cantidad" name="cantidad" step="any" min="0" value="0">
                 </div>
                 <!-- /.form-group -->
 
