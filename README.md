@@ -9,8 +9,8 @@ Loading...
 ---
 <h2><u>Requerimientos</u></h2>
 
-- [PHP >= 7.2.0](https://www.php.net/downloads.php)
-- [Laravel 6.18.3](https://laravel.com/docs/6.x)
+- [PHP >= 7.2.5](https://www.php.net/downloads.php)
+- [Laravel >= 7.22.4](https://laravel.com/docs/7.x)
 
 
 ---
