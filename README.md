@@ -35,7 +35,7 @@ Loading...
   
     ```bash
     php artisan key:generate
-    php artisan migrate
+    php artisan migrate:fresh --seed
     ```
 
 - Instalar las dependencias de VueJS y ejecutar el frontend.

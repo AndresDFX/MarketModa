@@ -1,7 +1,6 @@
 <?php
 
 namespace App\UsersTableSeederPermission\Models;
-
 use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model

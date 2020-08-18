@@ -4,6 +4,7 @@ use App\Product;
 use App\Category;
 use App\Image;
 use App\User;
+use Illuminate\Support\Facades\Gate;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,17 +17,30 @@ use App\User;
 |
 */
 
+
+Route::get('/prueba', function () {
+
+
+    Gate::authorize('haveaccess', 'role.show');
+
+    $user = User::find(1);
+    return $user;
+
+
+});
+
+
+Route::resource('/role', 'RoleController')->names('role');
+
+Route::resource('/user', 'UserController', ['except' => [
+    'create', 'store'
+]])->names('user');
+
 Route::get('/api/users', function () {
 
     $users = User::all();
     return $users;
 });
-
-
-Route::get('/resultados', function () {
-
-});
-
 
 
 Route::get('/', function () {
@@ -77,6 +91,4 @@ Route::resource('admin/product', 'Admin\AdminProductController')->names('admin.p
 Route::get('cancelar/{ruta}',function($ruta){
     return redirect()->route($ruta)->with('cancelar', 'Accion cancelada');
 })->name('cancelar');
-
-
 
