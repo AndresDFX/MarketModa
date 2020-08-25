@@ -239,56 +239,118 @@
           </li>
 
 
-           <!-- Categorias en Dashboard -->
-          <li class="nav-item has-treeview">
+            <!-- Categorias en Dashboard -->
+            @can('haveaccess','category.index')
+            <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-list"></i>
-              <p> Categorias
+                <i class="nav-icon fas fa-list"></i>
+                <p> Categorias
                 <i class="right fas fa-angle-left"></i>
-              </p>
+                </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
+                <li class="nav-item">
                 <a href="{{route('admin.category.index')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Listar categorias</p>
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Listar categorias</p>
                 </a>
-              </li>
-              <li class="nav-item">
+                </li>
+                @can('haveaccess','category.create')
+                <li class="nav-item">
                 <a href="{{route('admin.category.create')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Crear categorias</p>
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Crear categorias</p>
                 </a>
-              </li>
+                </li>
+                @endcan
 
             </ul>
-          </li>
+            </li>
+            @endcan
 
 
-          <!-- Productos en Dashboard -->
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tshirt"></i>
-              <p> Productos
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{route('admin.product.index')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Listar Productos</p>
+            <!-- Productos en Dashboard -->
+            @can('haveaccess','product.index')
+            <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-tshirt"></i>
+                <p> Productos
+                    <i class="right fas fa-angle-left"></i>
+                </p>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('admin.product.create')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Crear Productos</p>
-                </a>
-              </li>
+                <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{route('admin.product.index')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Listar Productos</p>
+                    </a>
+                </li>
+                @can('haveaccess','product.create')
+                <li class="nav-item">
+                    <a href="{{route('admin.product.create')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Crear Productos</p>
+                    </a>
+                </li>
+                @endcan
 
-            </ul>
-          </li>
+                </ul>
+            </li>
+            @endcan
+
+
+            <!-- Usuarios en Dashboard -->
+            @can('haveaccess','role.index')
+            <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-users"></i>
+                <p> Usuarios
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+                </a>
+                <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{route('user.index')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Listar usuarios</p>
+                    </a>
+                </li>
+
+                </ul>
+            </li>
+            @endcan
+
+            <!-- Roles en Dashboard -->
+            @can('haveaccess','role.index')
+            <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-user-cog"></i>
+                <p> Roles
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+                </a>
+                <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{route('role.index')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Listar roles</p>
+                    </a>
+                </li>
+
+                @can('haveaccess','role.create')
+                <li class="nav-item">
+                    <a href="{{route('role.create')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Crear rol</p>
+                    </a>
+                </li>
+                @endcan
+
+                </ul>
+            </li>
+            @endcan
+
+
 
 
           <li class="nav-item">

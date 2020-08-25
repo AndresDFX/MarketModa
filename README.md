@@ -18,13 +18,13 @@ Loading...
 
 - Descargar los archivos necesarios (/vendor).
   
-    ``` bash
+    ```bash
     composer install
     ```
 
 - Copiar el archivo ".env.example" y pegarlo con el nombre: ".env". Si estas en una terminal de bash, puedes ejecutar el siguiente comando.
   
-    ``` bash
+    ```bash
     cp .env.example .env
     ```
 
@@ -40,17 +40,22 @@ Loading...
 
 - Instalar las dependencias de VueJS y ejecutar el frontend.
   
-    ``` bash
+    ```bash
     npm install && npm run dev
     ```
 
 - Iniciar el servidor.
   
-    ``` bash
+    ```bash
     php artisan serve
     ```
 
-- Acceder a localhost:8000 en el navegador.
+- Acceder a localhost:8000 en el navegador
 
+- Credenciales de usuario administrador
+    ```bash
+    admin@admin.com
+    admin
+    ```
 
 </div>

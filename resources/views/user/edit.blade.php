@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('template.admin')
 
-@section('content')
+@section('contenido')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header"><h2>Edit User</h2></div>
 
@@ -11,7 +11,7 @@
                    @include('custom.message')
 
 
-                
+
                     <form action="{{ route('user.update', $user->id)}}" method="POST">
                      @csrf
                      @method('PUT')
@@ -20,25 +20,25 @@
 
                         <h3>Required data</h3>
 
-                         <div class="form-group">                            
-                            <input type="text" class="form-control" 
-                            id="name" 
+                         <div class="form-group">
+                            <input type="text" class="form-control"
+                            id="name"
                             placeholder="Name"
                             name="name"
                             value="{{ old('name', $user->name)}}"
                             >
                           </div>
-                          <div class="form-group">                            
-                            <input type="text" 
-                            class="form-control" 
-                            id="email" 
+                          <div class="form-group">
+                            <input type="text"
+                            class="form-control"
+                            id="email"
                             placeholder="email"
                             name="email"
                             value="{{ old('email' , $user->email)}}"
                             >
                           </div>
-                          
-                          <div class="form-group">                            
+
+                          <div class="form-group">
                             <select  class="form-control"  name="roles" id="roles">
                               @foreach($roles as $role)
                                 <option value="{{ $role->id }}"
@@ -47,14 +47,14 @@
                                       selected
                                     @endif
                                   @endisset
-                                
-                                
+
+
                                 >{{ $role->name }}</option>
                               @endforeach
                             </select>
                           </div>
 
-                          
+
                           <hr>
                           <input class="btn btn-primary" type="submit" value="Save">
 

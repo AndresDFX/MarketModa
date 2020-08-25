@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('template.admin')
 
-@section('content')
+@section('contenido')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header"><h2>Create Role</h2></div>
 
@@ -11,7 +11,7 @@
                    @include('custom.message')
 
 
-                
+
                     <form action="{{ route('role.store')}}" method="POST">
                      @csrf
 
@@ -19,18 +19,18 @@
 
                         <h3>Required data</h3>
 
-                         <div class="form-group">                            
-                            <input type="text" class="form-control" 
-                            id="name" 
+                         <div class="form-group">
+                            <input type="text" class="form-control"
+                            id="name"
                             placeholder="Name"
                             name="name"
                             value="{{ old('name')}}"
                             >
                           </div>
-                          <div class="form-group">                            
-                            <input type="text" 
-                            class="form-control" 
-                            id="slug" 
+                          <div class="form-group">
+                            <input type="text"
+                            class="form-control"
+                            id="slug"
                             placeholder="Slug"
                             name="slug"
                             value="{{ old('slug')}}"
@@ -38,8 +38,8 @@
                           </div>
 
                           <div class="form-group">
-                            
-                            <textarea class="form-control" placeholder="Description" name="description" id="description" rows="3"> 
+
+                            <textarea class="form-control" placeholder="Description" name="description" id="description" rows="3">
                              {{ old('description')}}
                             </textarea>
                           </div>
@@ -49,23 +49,23 @@
                           <h3>Full Access</h3>
                           <div class="custom-control custom-radio custom-control-inline">
                             <input type="radio" id="fullaccessyes" name="full-access" class="custom-control-input" value="yes"
-                            @if (old('full-access')=="yes") 
-                              checked 
+                            @if (old('full-access')=="yes")
+                              checked
                             @endif
-                            
-                            
+
+
                             >
                             <label class="custom-control-label" for="fullaccessyes">Yes</label>
                           </div>
                           <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="fullaccessno" name="full-access" class="custom-control-input" value="no" 
-                            @if (old('full-access')=="no") 
-                              checked 
+                            <input type="radio" id="fullaccessno" name="full-access" class="custom-control-input" value="no"
+                            @if (old('full-access')=="no")
+                              checked
                             @endif
-                            @if (old('full-access')===null) 
-                              checked 
+                            @if (old('full-access')===null)
+                              checked
                             @endif
-                            
+
                             >
                             <label class="custom-control-label" for="fullaccessno">No</label>
                           </div>
@@ -78,10 +78,10 @@
 
                           @foreach($permissions as $permission)
 
-                          
+
                           <div class="custom-control custom-checkbox">
-                            <input type="checkbox" 
-                            class="custom-control-input" 
+                            <input type="checkbox"
+                            class="custom-control-input"
                             id="permission_{{$permission->id}}"
                             value="{{$permission->id}}"
                             name="permission[]"
@@ -90,13 +90,13 @@
                             checked
                             @endif
                             >
-                            <label class="custom-control-label" 
+                            <label class="custom-control-label"
                                 for="permission_{{$permission->id}}">
                                 {{ $permission->id }}
-                                - 
-                                {{ $permission->name }} 
+                                -
+                                {{ $permission->name }}
                                 <em>( {{ $permission->description }} )</em>
-                            
+
                             </label>
                           </div>
 

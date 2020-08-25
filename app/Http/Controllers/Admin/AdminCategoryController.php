@@ -22,6 +22,7 @@ class AdminCategoryController extends Controller
      */
     public function index(Request $request)
     {
+        $this->authorize('haveaccess', 'category.index');
         $nombre = $request->get('nombre');
         $categorias = Category::where('nombre','like',"%$nombre%")->orderBy('nombre')->paginate(3);
         return view ('admin.category.index', compact('categorias'));
@@ -34,6 +35,7 @@ class AdminCategoryController extends Controller
      */
     public function create()
     {
+        $this->authorize('haveaccess', 'category.create');
         return view('admin.category.create');
     }
 
@@ -46,6 +48,7 @@ class AdminCategoryController extends Controller
     public function store(Request $request)
     {
         //Validacion deacuerdo al migracion de la peticion
+        $this->authorize('haveaccess', 'category.create');
         $request->validate([
             'nombre'=>'required|max:50|unique:categories,nombre',
             'slug' => 'required|max:50|unique:categories,slug',
@@ -70,6 +73,7 @@ class AdminCategoryController extends Controller
      */
     public function show($slug)
     {
+        $this->authorize('haveaccess', 'category.show');
         //Hacemos un where dentro de la BD, si existe retornamos la variable en el ambito de la vista y switch de Si
         $cat = Category::where('slug', $slug)->firstOrFail();
         $editar = 'Si';
@@ -84,6 +88,7 @@ class AdminCategoryController extends Controller
      */
     public function edit($slug)
     {
+        $this->authorize('haveaccess', 'category.edit');
         //Hacemos un where dentro de la BD, si existe retornamos la variable en el ambito de la vista y switch de Si
         $cat = Category::where('slug', $slug)->firstOrFail();
         $editar = 'Si';
@@ -99,6 +104,7 @@ class AdminCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('haveaccess', 'category.edit');
         //Buscar en la BD por el id
         $cat = Category::findOrFail($id);
 
@@ -126,6 +132,7 @@ class AdminCategoryController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('haveaccess', 'category.destroy');
         $cat = Category::findOrFail($id);
         $cat->delete();
         return redirect()->route('admin.category.index')->with('datos', 'Registro eliminado correctamente');

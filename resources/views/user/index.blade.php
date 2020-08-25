@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('template.admin')
 
-@section('content')
+@section('contenido')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header"><h2>List of Users</h2></div>
 
@@ -25,10 +25,10 @@
                           </tr>
                         </thead>
                         <tbody>
-                          
-                            
+
+
                             @foreach ($users as $user)
-                            
+
                             <tr>
                                 <th scope="row">{{ $user->id}}</th>
                                 <td>{{ $user->name}}</td>
@@ -37,19 +37,19 @@
                                 @isset( $user->roles[0]->name )
                                   {{ $user->roles[0]->name}}
                                 @endisset
-                                
+
                                 </td>
-                                <td> 
+                                <td>
                                 @can('view',[$user, ['user.show','userown.show'] ])
-                                  <a class="btn btn-info" href="{{ route('user.show',$user->id)}}">Show</a> 
+                                  <a class="btn btn-info" href="{{ route('user.show',$user->id)}}">Show</a>
                                 @endcan
-                                </td>  
-                                <td> 
+                                </td>
+                                <td>
                                 @can('view', [$user, ['user.edit','userown.edit'] ])
-                                  <a class="btn btn-success" href="{{ route('user.edit',$user->id)}}">Edit</a> 
+                                  <a class="btn btn-success" href="{{ route('user.edit',$user->id)}}">Edit</a>
                                 @endcan
-                                </td>  
-                                <td> 
+                                </td>
+                                <td>
                                 @can('haveaccess','user.destroy')
                                   <form action="{{ route('user.destroy',$user->id)}}" method="POST">
                                     @csrf
@@ -57,16 +57,16 @@
                                     <button class="btn btn-danger">Delete</button>
                                   </form>
                                 @endcan
-                                  
 
-                                </td>  
-                            </tr>      
+
+                                </td>
+                            </tr>
                             @endforeach
-                            
 
-                            
-                          
-                         
+
+
+
+
                         </tbody>
                       </table>
 

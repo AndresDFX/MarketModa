@@ -81,11 +81,21 @@
                         <td>{{$categoria->created_at}}</td>
                         <td>{{$categoria->updated_at}}</td>
 
+                        @can('haveaccess','category.show')
                         <td><a class="btn btn-success" href="{{route('admin.category.show', $categoria->slug)}}"><i class="far fa-eye"></i></a></td>
+                        @endcan
+
+                        @can('haveaccess','category.edit')
                         <td><a class="btn btn-info" href="{{route('admin.category.edit', $categoria->slug)}}"><i class="far fa-edit"></i></a></td>
+                        @endcan
+
+                        @can('haveaccess','category.destroy')
                         <td><a class="btn btn-danger" href="{{route('admin.category.index')}}"
                                 v-on:click.prevent="deseas_eliminar({{$categoria->id}})"><i class="far fa-trash-alt"></a></td>
+                        @endcan
+
                         </tr>
+
                     @endforeach
 
 
@@ -96,8 +106,10 @@
 
               <!-- /.card-body -->
             </div>
+            @can('haveaccess','category.create')
               <a class="m-2 float-left btn btn-primary" href="{{route('admin.category.create')}}" >Crear</a>
             <!-- /.card -->
+            @endcan
           </div>
 
         </div>

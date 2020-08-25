@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('template.admin')
 
-@section('content')
+@section('contenido')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header"><h2>Edit Role</h2></div>
 
@@ -11,7 +11,7 @@
                    @include('custom.message')
 
 
-                
+
                     <form action="{{ route('role.update', $role->id)}}" method="POST">
                      @csrf
                      @method('PUT')
@@ -20,18 +20,18 @@
 
                         <h3>Required data</h3>
 
-                         <div class="form-group">                            
-                            <input type="text" class="form-control" 
-                            id="name" 
+                         <div class="form-group">
+                            <input type="text" class="form-control"
+                            id="name"
                             placeholder="Name"
                             name="name"
                             value="{{ old('name', $role->name)}}"
                             readonly>
                           </div>
-                          <div class="form-group">                            
-                            <input type="text" 
-                            class="form-control" 
-                            id="slug" 
+                          <div class="form-group">
+                            <input type="text"
+                            class="form-control"
+                            id="slug"
                             placeholder="Slug"
                             name="slug"
                             value="{{ old('slug' , $role->slug)}}"
@@ -39,7 +39,7 @@
                           </div>
 
                           <div class="form-group">
-                            
+
                             <textarea  readonly class="form-control" placeholder="Description" name="description" id="description" rows="3">{{old('description', $role->description)}}</textarea>
                           </div>
 
@@ -48,26 +48,26 @@
                           <h3>Full Access</h3>
                           <div class="custom-control custom-radio custom-control-inline">
                             <input disabled type="radio" id="fullaccessyes" name="full-access" class="custom-control-input" value="yes"
-                            @if ( $role['full-access']=="yes") 
-                              checked 
-                            @elseif (old('full-access')=="yes") 
-                              checked 
+                            @if ( $role['full-access']=="yes")
+                              checked
+                            @elseif (old('full-access')=="yes")
+                              checked
                             @endif
-                            
-                            
+
+
                             >
                             <label class="custom-control-label" for="fullaccessyes">Yes</label>
                           </div>
                           <div class="custom-control custom-radio custom-control-inline">
-                            <input disabled type="radio" id="fullaccessno" name="full-access" class="custom-control-input" value="no" 
-                            
-                            @if ( $role['full-access']=="no") 
-                              checked 
-                            @elseif (old('full-access')=="no") 
-                              checked 
+                            <input disabled type="radio" id="fullaccessno" name="full-access" class="custom-control-input" value="no"
+
+                            @if ( $role['full-access']=="no")
+                              checked
+                            @elseif (old('full-access')=="no")
+                              checked
                             @endif
-                            
-                            
+
+
                             >
                             <label class="custom-control-label" for="fullaccessno">No</label>
                           </div>
@@ -80,11 +80,11 @@
 
                           @foreach($permissions as $permission)
 
-                          
+
                           <div class="custom-control custom-checkbox">
-                            <input type="checkbox" 
+                            <input type="checkbox"
                             disabled
-                            class="custom-control-input" 
+                            class="custom-control-input"
                             id="permission_{{$permission->id}}"
                             value="{{$permission->id}}"
                             name="permission[]"
@@ -97,20 +97,20 @@
 
                             @endif
                             >
-                            <label class="custom-control-label" 
+                            <label class="custom-control-label"
                                 for="permission_{{$permission->id}}">
                                 {{ $permission->id }}
-                                - 
-                                {{ $permission->name }} 
+                                -
+                                {{ $permission->name }}
                                 <em>( {{ $permission->description }} )</em>
-                            
+
                             </label>
                           </div>
 
 
                           @endforeach
                           <hr>
-                          
+
                           <a class="btn btn-success" href="{{route('role.edit',$role->id)}}">Edit</a>
                           <a class="btn btn-danger" href="{{route('role.index')}}">Back</a>
 

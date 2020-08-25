@@ -87,11 +87,20 @@
                         <td>{{$producto->activo}}</td>
                         <td>{{$producto->sliderprincipal}}</td>
 
+                        @can('haveaccess','product.show')
                         <td><a class="btn btn-success" href="{{route('admin.product.show', $producto->slug)}}"><i class="far fa-eye"></i></a></td>
+                        @endcan
+
+                        @can('haveaccess','product.edit')
                         <td><a class="btn btn-info" href="{{route('admin.product.edit', $producto->slug)}}"><i class="far fa-edit"></i></a></td>
+                        @endcan
+
+                        @can('haveaccess','product.destroy')
                         <td><a class="btn btn-danger" href="{{route('admin.product.index')}}"
                                 v-on:click.prevent="deseas_eliminar({{$producto->id}})"><i class="far fa-trash-alt"></a></td>
                         </tr>
+                        @endcan
+
                     @endforeach
 
 
@@ -102,8 +111,10 @@
 
               <!-- /.card-body -->
             </div>
+            @can('haveaccess','product.create')
               <a class="m-2 float-left btn btn-primary" href="{{route('admin.product.create')}}" >Crear</a>
             <!-- /.card -->
+            @endcan
           </div>
 
         </div>
